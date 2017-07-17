@@ -1,42 +1,58 @@
-## Описание
-Это пример рынка токенов.
+## Description
+This is an example of a token market.
 
-Владелец токенов производит первоначальную эмиссию определенного количества токенов, которые зачисляются на его
- кошелек. В дальнейшем он может производит новые эмиссии токенов в чью-то пользу (`CustomToken.emission(receiver, amount)`), о чем будут 
- оповещаться все желающие это знать (`event Emission(uint256 amount)`).
 
-Владелец рынка организовывает продажу токенов между участниками. Он устанавливает размер комиссии (`SellOffer.setFee(fee)`), которая будет 
-сниматься с покупателя за покупку токенов в пользу рынка. Также он может вывести часть "заработанных" рынком средств на свой кошелек 
-(`SellOffer.withdraw(amount)`). Кроме того владелец рынка может закрыть рынок с возвращенеи всех не проданных токенов их обладателям и 
-выводом всех "заработанных" средств на свой кошелек (`SellOffer.destroy()`).
 
-Любой участник рынка может просмотреть общее количество предложений на рынке (`SellOffer.getAllSellOffersCount()`), количество своих 
-предложений (`SellOffer.getMySellOffersCount()`) и текущий размер комиссии (`SellOffer.fee()`). Также он может выбрать любое предложение по 
-его номеру (`SellOffer.getSellOffer(index)`) и совершить сделку по номеру предложения перечислив в этой же транзакции достаточное 
-количество средств (`SellOffer.buy(index)`). При необходимости рынок вернет сдачу.
+The token owner produces the initial emission of a certain number of tokens that are credited to his wallet. In the future, new emission of tokens can be produced in someone's favor (`CustomToken.emission (receiver, amount)`). Anyone interested will be notified about it (`event Emission (uint256 amount)`).
+
+
+The owner of the market organizes the sale of tokens between the participants. He or she sets the fee amount (`SellOffer.setFee (fee)`), which will be
+withdrawed from the buyer for the purchase of tokens in favor of the market. Also, he or she can withdraw a portion of the money "earned" by the market on the wallet
+(`SellOffer.withdraw (amount)`). In addition, the market owner can close the market returning all the unsold tokens to their holders and
+Withdrawal of all "earned" funds to own wallet (`SellOffer.destroy ()`).
+
+
+Any market participant can view the total number of offers on the market (`SellOffer.getAllSellOffersCount ()`), the number of own offers
+(`SellOffer.getMySellOffersCount ()`) and the current fee amount (`SellOffer.fee ()`). Also it's easy to choose any proposal by
+its number (`SellOffer.getSellOffer (index)`) and make a deal by the offer number after transferring the sufficient
+funds in the same transaction  (`SellOffer.buy (index)`). If necessary, the market will return the change.
+
+The token owner can create a sell offer by specifying the quantity and price in wei (1 ether * 10 ^ -18) (`SellOffer.createSellOffer
+(Amount, price) `). To do this, before placing the proposal itself, it's important to create the permit for the market contract to get a certain number of tokens from the wallet (`CustomToken.approve (spender, value)`). The placeholder can cancel the proposal and return tokens without a market commission to the wallet (`SellOffer.cancel (index)`).
+
+
+
+## Required components
  
-Обладатель токенов может создать предложение о продаже, указав количество и цену в wei (1 ether * 10^-18) (`SellOffer.createSellOffer
-(amount, price)`). Для этого перед размещение самого предложения ему необходимо создать разрешение чтобы контракт рынка смог снять с его 
-кошелька определенное количество токенов (`CustomToken.approve(spender, value)`). Разместивший предложение может его отменить с 
-возвращеним токенов без комиссии рынка на свой кошелек (`SellOffer.cancel(index)`).
+- You must install a network client Ethereum - Geth (https://geth.ethereum.org/downloads).
+ 
+- To place contracts on the network you can choose to install either Mist (https://github.com/ethereum/mist/releases) or Truffle 
+ (http://truffleframework.com) or even both.
 
-## Необходимые компоненты
- - Необходимо установить клиент сети Ethereum - Geth (https://geth.ethereum.org/downloads).
- - Для размещения контрактов в сети на выбор можно установить Mist (https://github.com/ethereum/mist/releases), Truffle 
- (http://truffleframework.com) или и то и другое.
 
-## Настройка компонентов
 
-### Запуск ноды сети
-В терминале запустим Geth и укажем чтобы Geth использовал приватную тестовую сеть Ethereum:
+## Components configuration
+
+### Running the Network Node
+Run the Geth in a console and indicate Geth to use private test network Ethereum:
+
 - geth --dev --rpc --rpccorsdomain="*" --rpcaddr "0.0.0.0" --rpcapi "admin,debug,miner,shh,txpool,personal,eth,net,web3" console
 
-### Настройка Mist
-Во отдельном терминале запустим Mist и укажем чтобы Mist использовал не встроенный клиент сети Ethereum: 
+
+
+### Mist configuration
+
+ Run Mist in a separate console and indicate Mist to use not embedded client of Ethereum network: 
+
 - mist --rpc http://localhost:8545
 
-### Настройка Truffle
-Для настройки Truffle необходимо отредактировать файл truffle.js
+
+
+### Truffle configuration
+
+To configurate Truffle you need to edit truffle.js
+
+ file
 
 ```module.exports = {
   networks: {
@@ -48,45 +64,64 @@
   }
 };
 ```
-### Создание майнера 
-Для того чтобы создать аккаунт в терминале Geth нужно выполнить команду 
+
+### Miner creation 
+
+In order to create an account in the Geth console, you need to run the command 
 - personal.newAccount("password").
  
-Для того чтобы создать аккаунт в Mist нужно нажать сооветствующую кнопку. 
 
-Первый созданный аккаунт будет автоматически назначен майнером.
 
-За размещение контрактов необходимо платить комиссию за проведение транзакции в блокчейне, поэтому необходимо запустить майнер. Для этого
- в терминале Geth необходимо выполнить команду:
+In order to create an account in Mist, you need to click the corresponding button.
+
+The first account created will be automatically assigned as a miner.
+
+When placing the contracts, you have to pay a commission for carrying out the transaction in the blockchain, so you need to run the miner. To do this execute the command in Geth console:
 - miner.start()
 
-Чтобы остановить майнинг:
+
+
+To stop mining:
+
 - miner.stop()
 
-## Размещение контрактов
-Для проведение всех транзакций, размещение и вызов контрактов (кроме статических) необходимо чтобы работал майнер.
 
-1) Размещается контракт Dispatcher
-2) Размещается контракт CustomToken с указанием имени токена, его символа, количество дробных порядков и величиной первоначальной эмиссии
-3) Адрес размещенного контракта CustomToken назначается в Dispatcher от 
-имени аккаунта, разместивший сам Dispatcher
-4) Размещается контракт SellOffer с указанием адреса размещенного ранее контракта Dispatcher
+## Placement of contracts
 
-### Размещение с помощью Mist
-Для размещения контрактов в Mist необходимо перейти в соответствующий раздел, далее:
-- выбрать аккаунт от имени которого будет происходить размещение,
-- при необходимости указать количество средств перечисляемых на контракт,
-- вставить исходный код,
-- выбрать имя контракта,
-- указать параметры конструктора,
-- указать размер комиссии,
-- нажать кнопку размещения и указать пароль от размещающего аккаунта
+To conduct all transactions, placing and calling contracts (except for static ones) the miner has to work.
 
-Так как Mist не умеет производить импорт, то вместо него необходимо вставлять либо весь код импортируемого контракта либо его абстрактный
- аналог (если будет использоваться его реализация, которая ранее была размещена в блокчейне)
- 
-### Размещение с помощью Truffle
-Для размещения контрактов с помощью Truffle необходимо создать соответсвующие миграционные файлы:
+
+1) The Dispatcher contract is placed
+
+2) A CustomToken contract is placed with the name of the token, its symbol, the number of fractional orders and the value of the initial fee
+
+3) The address of the posted CustomToken contract is assigned to the Dispatcher from the Account name that posted the Dispatcher
+
+4) The SellOffer contract is placed with the address of the previously placed Dispatcher contract
+
+### Placement with Mist
+
+To place contracts in Mist, you need to go to the appropriate section, then:
+
+- select an account on behalf of which the placement will take place,
+
+- if necessary, indicate the number of funds transferred to the contract,
+- insert the source code,
+
+- choose the name of the contract,
+
+- specify the parameters of the constructor,
+
+- specify the fee amount,
+
+- click the placement button and specify the password from the posting account
+
+Since Mist does not know how to make import, you better insert either all the code of the imported contract or its abstract analog (if you use the implementation, that was previously placed in the blockchain)
+
+
+### Placement with Truffle
+
+To place contracts using Truffle, you must create the appropriate migration files:
 - 1_initial_migration.js
 ```
 var Migrations = artifacts.require("./Migrations.sol");
@@ -115,8 +150,10 @@ module.exports = function(deployer) {
 ```
 - etc.
 
-Затем в терминале Geth необходимо разблокировать аккаунт, от лица которого будет выполняться размещение контратков и ввести пароль:
-- personal.unlockAccount("account_address")
 
-После чего в терминале из директории проекта необходимо выполнить команду:
+
+Then in the Geth console you need to unlock the account on whose behalf the counter placement will be executed and enter the password:
+- personal.unlockAccount ("account_address")
+
+Then execute the command in the console from the project directory:
 - truffle migrate
