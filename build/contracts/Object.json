@@ -1,0 +1,74 @@
+{
+  "contract_name": "Object",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "setOwner",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "hammer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "destroy",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_hammer",
+          "type": "address"
+        }
+      ],
+      "name": "setHammer",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "type": "constructor"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000c57fe5b5b60008054600160a060020a033316600160a060020a031991821681179092556001805490911690911790555b5b6101e0806100496000396000f300606060405263ffffffff60e060020a60003504166313af4035811461004d578063457f4d411461006b57806383197ef0146100975780638da5cb5b146100a9578063d31fdffd146100d5575bfe5b341561005557fe5b610069600160a060020a03600435166100f3565b005b341561007357fe5b61007b61012f565b60408051600160a060020a039092168252519081900360200190f35b341561009f57fe5b61006961013e565b005b34156100b157fe5b61007b610169565b60408051600160a060020a039092168252519081900360200190f35b34156100dd57fe5b610069600160a060020a0360043516610178565b005b60005433600160a060020a0390811691161461010f5760006000fd5b60008054600160a060020a031916600160a060020a0383161790555b5b50565b600154600160a060020a031681565b60015433600160a060020a0390811691161461015a5760006000fd5b33600160a060020a0316ff5b5b565b600054600160a060020a031681565b60015433600160a060020a039081169116146101945760006000fd5b60018054600160a060020a031916600160a060020a0383161790555b5b505600a165627a7a72305820e05875f6301d9f8c7c65668bd950bdd08402f0d29f526afbf16b747aa9e2067f0029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1500289124578
+}

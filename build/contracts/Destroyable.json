@@ -1,0 +1,43 @@
+{
+  "contract_name": "Destroyable",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "hammer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "destroy",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_hammer",
+          "type": "address"
+        }
+      ],
+      "name": "setHammer",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000c57fe5b5b6101278061001c6000396000f300606060405263ffffffff60e060020a600035041663457f4d418114603457806383197ef014605d578063d31fdffd14606c575bfe5b3415603b57fe5b60416087565b60408051600160a060020a039092168252519081900360200190f35b3415606457fe5b606a6096565b005b3415607357fe5b606a600160a060020a036004351660c0565b005b600054600160a060020a031681565b60005433600160a060020a0390811691161460b15760006000fd5b33600160a060020a0316ff5b5b565b60005433600160a060020a0390811691161460db5760006000fd5b60008054600160a060020a031916600160a060020a0383161790555b5b505600a165627a7a723058206cdde616c70da42c2a4534d1fb6b817f206eab2dd5ea120f812ce42e18f5d7dc0029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1500289124577
+}

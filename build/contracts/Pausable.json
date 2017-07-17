@@ -1,0 +1,48 @@
+{
+  "contract_name": "Pausable",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "setOwner",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_paused",
+          "type": "bool"
+        }
+      ],
+      "name": "setPausable",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    }
+  ],
+  "unlinked_binary": "0x60606040526000805460a060020a60ff0219169055341561001c57fe5b5b61014a8061002c6000396000f300606060405263ffffffff60e060020a60003504166313af40358114610037578063736d323a146100555780638da5cb5b1461006c575bfe5b341561003f57fe5b610053600160a060020a0360043516610098565b005b341561005d57fe5b61005360043515156100d4565b005b341561007457fe5b61007c61010f565b60408051600160a060020a039092168252519081900360200190f35b60005433600160a060020a039081169116146100b45760006000fd5b60008054600160a060020a031916600160a060020a0383161790555b5b50565b60005433600160a060020a039081169116146100f05760006000fd5b6000805460a060020a60ff02191660a060020a831515021790555b5b50565b600054600160a060020a0316815600a165627a7a7230582043205c69416fb58fe5fca1ca64c1b37cde181d45430e1e13a8e09fad8460d4250029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1500289124578
+}
